@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div class="container mt-5">
         <div class='form-header'>
             <h4>Login</h4>
         </div>
-        <div class='form-body'>
+        <div class='form-body mt-5'>
             <form @submit.prevent="login">
-                <div class="form-group col-md-6">
+                <div class="form-group">
                     <label for="inputUsername">Username</label>
                     <input type="text" class="form-control" id="inputUsername">
                 </div>
@@ -13,7 +13,9 @@
                     <label for="inputPassword">Password</label>
                     <input type="password" class="form-control" id="inputPassword">
                 </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary btn-lg p-2">Login</button>
+                </div>
             </form>  
         </div>
   

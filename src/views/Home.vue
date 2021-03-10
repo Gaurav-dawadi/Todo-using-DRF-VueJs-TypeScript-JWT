@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="container mt-5 mb-5">
+    <h1>This is Main Page</h1>
   </div>
 </template>
 
