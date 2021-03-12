@@ -10,5 +10,5 @@ export function setToken(jwt: string) {
 }
 
 export function clearToken() {
-    API.defaults.headers.common["Authorization"];
+    delete API.defaults.headers.common["Authorization"];
 }

@@ -27,7 +27,7 @@
                 </el-row>
                 <el-row class="mt-3">
                     <label>Confirm Password</label>
-                    <el-input placeholder="Confirm Password" v-model="password" show-password></el-input>
+                    <el-input placeholder="Confirm Password" v-model="password2" show-password></el-input>
                 </el-row>
                 <div class="mt-4">
                     <el-button type="primary" round class="btn btn-primary btn-md">Sign Up</el-button>
@@ -48,6 +48,15 @@ import { Input, Button } from 'element-ui';
     }
 })
 export default class Register extends Vue {
+    username = ''
+    email = ''
+    firstname = ''
+    lastname = ''
+    password = ''
+    password2 = ''
 
+    register() {
+        return 
+    }
 }
 </script>

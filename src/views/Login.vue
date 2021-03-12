@@ -4,7 +4,7 @@
             <h2>Login</h2>
         </div>
         <div class='form-body mt-5'>
-            <form @submit.prevent="login">
+            <form>
                 <el-row class="mt-3">
                     <label>Username</label>
                     <el-input placeholder="Username" v-model="username"></el-input>
@@ -14,7 +14,7 @@
                     <el-input placeholder="Password" v-model="password" show-password></el-input>
                 </el-row>
                 <div class="mt-4">
-                    <el-button type="primary" round class="btn btn-primary btn-md">Login</el-button>
+                    <el-button @click="login" type="primary" round class="btn btn-primary btn-md">Login</el-button>
                 </div>
             </form>  
         </div>
@@ -22,8 +22,10 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator"
+import {Component, Vue} from "vue-property-decorator";
 import { Input, Button } from 'element-ui';
+import authUser from "../store/modules/authUser"
+import { API } from "../api"
 
 @Component({
     components: {
@@ -36,8 +38,10 @@ export default class Login extends Vue {
     password = '';
 
     login() {
-        
-        return
+        authUser.login({
+            username: this.username,
+            password: this.password,
+        })
     }
 }
 
