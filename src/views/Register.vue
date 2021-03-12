@@ -1,39 +1,53 @@
 <template>
     <div class="container mt-5">
         <div class='form-header'>
-            <h4>Register</h4>
+            <h2>Register</h2>
         </div>
         <div class='form-body mt-5'>
             <form @submit.prevent="register">
-                <div class="form-group">
-                    <label for="inputUsername">Username</label>
-                    <input type="text" class="form-control" id="inputUsername">
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail">
-                </div>
-                <div class="form-group">
-                    <label for="inputFirstname">FirstName</label>
-                    <input type="text" class="form-control" id="inputFirstname">
-                </div>
-                <div class="form-group">
-                    <label for="inputLastname">LastName</label>
-                    <input type="text" class="form-control" id="inputLastname">
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword">Password</label>
-                    <input type="password" class="form-control" id="inputPassword">
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword2">Password Confirm</label>
-                    <input type="password" class="form-control" id="inputPassword2">
-                </div>
-                <div class="mt-5">
-                    <button type="submit" class="btn btn-primary btn-lg p-2">Sign up</button>
+                <el-row class="mt-3">
+                    <label>Username</label>
+                    <el-input placeholder="Username" v-model="username"></el-input>
+                </el-row>
+                <el-row class="mt-3">
+                    <label>Email</label>
+                    <el-input placeholder="Email" v-model="email"></el-input>
+                </el-row>
+                <el-row class="mt-3">
+                    <label>FirstName</label>
+                    <el-input placeholder="FirstName" v-model="firstname"></el-input>
+                </el-row>
+                <el-row class="mt-3">
+                    <label>LastName</label>
+                    <el-input placeholder="LastName" v-model="lastname"></el-input>
+                </el-row>
+                <el-row class="mt-3">
+                    <label>Password</label>
+                    <el-input placeholder="Password" v-model="password" show-password></el-input>
+                </el-row>
+                <el-row class="mt-3">
+                    <label>Confirm Password</label>
+                    <el-input placeholder="Confirm Password" v-model="password" show-password></el-input>
+                </el-row>
+                <div class="mt-4">
+                    <el-button type="primary" round class="btn btn-primary btn-md">Sign Up</el-button>
                 </div>
             </form>  
         </div>
-  
     </div>
 </template>
+
+<script lang="ts">
+import {Component, Vue} from "vue-property-decorator"
+import { Input, Button } from 'element-ui';
+
+@Component({
+    components: {
+        Input,
+        Button
+    }
+})
+export default class Register extends Vue {
+
+}
+</script>
