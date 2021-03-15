@@ -32,9 +32,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import authUser from "../store/modules/authUser"
 import { Table } from 'element-ui'
 import { API } from "../api"
-import authUser from "../store/modules/authUser"
 
 @Component({
   components: {
@@ -57,7 +57,6 @@ export default class Home extends Vue {
   get loggedStatus(){
     return authUser.LoggedIn
   }
- 
 }
 </script>
 

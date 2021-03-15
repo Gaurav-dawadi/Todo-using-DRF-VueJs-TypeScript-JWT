@@ -29,7 +29,7 @@ class AuthUserModule extends VuexModule {
         try {
             const response = await API.post('login/', userSubmit)  
             JwtService.saveToken(response.data.access)
-            return 
+            return true
         }
         catch(e) {
             console.log(e)
