@@ -42,7 +42,7 @@ import authUser from "../store/modules/authUser"
   },
 })
 export default class Home extends Vue {
-  todoList = []
+  todoList: object[] = []
 
   async created(){
     try{
