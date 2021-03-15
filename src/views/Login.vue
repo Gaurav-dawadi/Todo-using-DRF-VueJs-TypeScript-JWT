@@ -25,7 +25,6 @@
 import {Component, Vue} from "vue-property-decorator";
 import { Input, Button } from 'element-ui';
 import authUser from "../store/modules/authUser"
-import { API } from "../api"
 
 @Component({
     components: {
@@ -37,11 +36,17 @@ export default class Login extends Vue {
     username = '';
     password = '';
 
-    login() {
-        authUser.login({
-            username: this.username,
-            password: this.password,
-        })
+    async login() {
+        try{
+            await authUser.login({
+                username: this.username,
+                password: this.password,
+            })
+        }
+        catch(e){
+            console.log("Error during login ", e)
+        }
+        this.$router.push('/')
     }
 }
 

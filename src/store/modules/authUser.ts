@@ -1,4 +1,5 @@
 import { API, setToken } from "@/api"
+import JwtService from '@/api/jwt.service'
 import store from "@/store"
 import { Module, VuexModule, Mutation, Action, getModule } from "vuex-module-decorators"
 import { UserSubmit } from "../models/authUser"
@@ -16,17 +17,19 @@ class AuthUserModule extends VuexModule {
     @Mutation
     setLoggedIn(isLoggedIn: boolean){
         this.isLoggedIn = isLoggedIn
+        setToken()  
+    }
+
+    get LoggedIn(){
+        return this.isLoggedIn
     }
 
     @Action({commit: 'setLoggedIn'})
     async login(userSubmit: UserSubmit) {
         try {
-            const response = await API.post('login/', userSubmit)
-            if(!localStorage.getItem("AccessToken")) {
-                setToken(response.data.access)
-                localStorage.setItem("AccessToken", API.defaults.headers.common["Authorization"])
-            }  
-            return true
+            const response = await API.post('login/', userSubmit)  
+            JwtService.saveToken(response.data.access)
+            return 
         }
         catch(e) {
             console.log(e)
