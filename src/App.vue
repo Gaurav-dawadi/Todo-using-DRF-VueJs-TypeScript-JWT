@@ -8,6 +8,8 @@
 <script lang="ts">
 import BaseHeader from "./components/BaseHeader.vue"
 import { Component, Vue } from "vue-property-decorator"
+// import { API, setToken } from "./api"
+import authUser from "./store/modules/authUser"
 
 @Component({
   components: {
@@ -16,6 +18,11 @@ import { Component, Vue } from "vue-property-decorator"
 })
 export default class App extends Vue{
 
+  beforeCreate(){
+    if(window.localStorage.getItem("id_token")){
+      authUser.setLoggedIn(true)
+    }
+  }
 }
 
 

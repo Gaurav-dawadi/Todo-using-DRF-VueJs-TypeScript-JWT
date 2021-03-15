@@ -46,8 +46,10 @@ export default class Home extends Vue {
 
   async created(){
     try{
-      const response = await API.get('todo/')
-      this.todoList = [...this.todoList, ...response.data]
+      if(window.localStorage.getItem("id_token")){
+        const response = await API.get('todo/')
+        this.todoList = [...this.todoList, ...response.data]
+      }
     }
     catch(e){
       console.log("Error during fetching ", e)
