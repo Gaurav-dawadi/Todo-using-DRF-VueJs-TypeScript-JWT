@@ -13,7 +13,7 @@ class ListTodo extends VuexModule {
 
     @Mutation
     setTodo(todo: object[]){
-        this.todoList = [...this.todoList, ...todo]
+        this.todoList = todo
     }
 
     @Action({commit: 'setTodo'})

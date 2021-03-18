@@ -47,7 +47,6 @@ import authUser from "../store/modules/authUser"
 import createTask from "../store/modules/createTodo"
 import listTask from "../store/modules/listTodo"
 import { Form, Table } from 'element-ui'
-import { API } from "../api"
 
 @Component({
   components: {
@@ -56,13 +55,18 @@ import { API } from "../api"
   },
 })
 export default class Home extends Vue {
-  
+
   form = {
     todo: ''
   }
 
   async onSubmit(){
-    await createTask.createTodo(this.form.todo)
+    try{
+      await createTask.createTodo(this.form.todo)
+    }
+    finally{
+      this.form.todo = ''
+    }
   }
 
   async created(){

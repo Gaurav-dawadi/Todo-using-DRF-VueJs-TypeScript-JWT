@@ -1,8 +1,8 @@
-import { Module, getModule, Action, VuexModule } from 'vuex-module-decorators'
+import { Module, getModule, Action, VuexModule, Mutation } from 'vuex-module-decorators'
+import listTask from "@/store/modules/listTodo"
 import store from "@/store"
+import { Todo } from "@/store/models/todo"
 import { API } from "@/api"
-// import { Todo } from "@/store/models/todo"
-
 
 @Module({
     namespaced: true,
@@ -12,21 +12,23 @@ import { API } from "@/api"
 })
 class CreateTodo extends VuexModule {
 
-    // @Mutation
-    // addTodo(todo: Todo){
-    //     this.todoList.push(todo)
-    // }
+    @Mutation
+    updateList(obj: Todo){
+        listTask.todoList.push(obj)
+    }
 
-    @Action({})
+    @Action({commit: 'updateList'})
     async createTodo(todo: string){
         try{
-            await API.post('todo/', {"note": todo})
+            const response = await API.post('todo/', {"note": todo})
+            return response.data
         }
         catch(e){
             console.log(e)
-        }
-          
+        }    
     }
+
+
 
 }
 
