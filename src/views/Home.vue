@@ -71,14 +71,15 @@ export default class Home extends Vue {
   async onSubmit(){
     try{
       await createTask.createTodo(this.form.todo)
+      listTask.getTodo()
     }
     finally{
-      this.form.todo = ''
+      this.form.todo = ''  
     }
   }
 
   async created(){
-    await listTask.getTodo() 
+    await listTask.getTodo()
   }
 
   get loggedStatus(){
@@ -86,7 +87,7 @@ export default class Home extends Vue {
   }
 
   get listOfTodo(){
-    return listTask.todoList
+    return listTask.todoList.splice(0, 5)
   }
 
 }

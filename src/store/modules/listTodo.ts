@@ -21,7 +21,7 @@ class ListTodo extends VuexModule {
         try{
             if(window.localStorage.getItem("id_token")){
                 const response = await API.get('todo/')
-                return response.data
+                return response.data.splice(0, 5)
             }
         }
         catch(e){

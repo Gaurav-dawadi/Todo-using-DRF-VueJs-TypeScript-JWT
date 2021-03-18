@@ -16,7 +16,7 @@ class CreateTodo extends VuexModule {
 
     @Mutation
     updateList(obj: Todo){
-        listTask.todoList.push(obj)
+        listTask.todoList.unshift(obj)
     }
 
     @Action({commit: 'updateList'})
