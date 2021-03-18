@@ -5,10 +5,10 @@
     <div class="mt-5 mb-5">
       <el-form :inline="true" :model="form" class="demo-form-inline">
         <el-form-item>
-          <el-input v-model="form.todo" placeholder="Todo" class="main-input"></el-input>
+          <el-input v-model="form.todo" placeholder="Todo" class="main-input" style="width: 50em"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit" class="main-button">ADD</el-button>
+          <el-button type="primary" @click="onSubmit" round class="main-button" style="width: 8em">ADD</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -35,6 +35,14 @@
           prop='modified_at'
           label='Updated At'
         >
+        </el-table-column>
+        <el-table-column 
+          label='Action'
+        >
+          <el-row>
+            <el-col :span="8"><el-button type="success" icon="el-icon-edit"></el-button></el-col>
+            <el-col :span="8"><el-button type="danger" icon="el-icon-delete"></el-button></el-col>
+          </el-row>
         </el-table-column>
       </el-table>
     </div>
