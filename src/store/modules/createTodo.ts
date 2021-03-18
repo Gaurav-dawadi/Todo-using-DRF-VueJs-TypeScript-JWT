@@ -12,6 +12,8 @@ import { API } from "@/api"
 })
 class CreateTodo extends VuexModule {
 
+    Task: Todo = {} as Todo
+
     @Mutation
     updateList(obj: Todo){
         listTask.todoList.push(obj)
@@ -20,7 +22,8 @@ class CreateTodo extends VuexModule {
     @Action({commit: 'updateList'})
     async createTodo(todo: string){
         try{
-            const response = await API.post('todo/', {"note": todo})
+            this.Task.note = todo
+            const response = await API.post('todo/', this.Task)
             return response.data
         }
         catch(e){
