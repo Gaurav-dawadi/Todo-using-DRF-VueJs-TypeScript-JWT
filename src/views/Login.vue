@@ -7,10 +7,12 @@
             <form>
                 <el-row class="mt-3">
                     <label>Username</label>
+                    <i class="el-icon-user-solid"></i>
                     <el-input placeholder="Username" v-model="username"></el-input>
                 </el-row>
                 <el-row class="mt-3">
                     <label>Password</label>
+                    <i class="el-icon-s-cooperation"></i>
                     <el-input placeholder="Password" v-model="password" show-password></el-input>
                 </el-row>
                 <div class="mt-4">
