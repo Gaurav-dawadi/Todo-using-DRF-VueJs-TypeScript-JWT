@@ -4,11 +4,11 @@ import { API } from "@/api"
 
 @Module({
     namespaced: true,
-    name: 'listTask',
+    name: 'allTask',
     store,
     dynamic: true
 })
-class ListTodo extends VuexModule {
+class AllTodo extends VuexModule {
     todoList: object[] = []
 
     @Mutation
@@ -21,14 +21,13 @@ class ListTodo extends VuexModule {
         try{
             if(window.localStorage.getItem("id_token")){
                 const response = await API.get('todo/')
-                return response.data.splice(0, 5)
+                return response.data
             }
         }
         catch(e){
             console.log("Error during fetching ", e)
         }
     }
-
 }
 
-export default getModule(ListTodo);
+export default getModule(AllTodo);

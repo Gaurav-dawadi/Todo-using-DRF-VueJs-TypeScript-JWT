@@ -1,20 +1,19 @@
 <template>
   <div class="container mt-5 mb-5">
-    <h3>Todo List</h3>
 
     <div class="mt-5 mb-5">
       <el-form :inline="true" :model="form" class="demo-form-inline">
         <el-form-item>
-          <el-input v-model="form.todo" placeholder="Todo" class="main-input" style="width: 50em"></el-input>
+          <el-input v-model="form.note" placeholder="Todo" class="main-input"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit" round class="main-button" style="width: 8em">ADD</el-button>
+          <el-button type="primary" @click="onSubmit" round class="main-button">ADD</el-button>
         </el-form-item>
       </el-form>
     </div>
 
     <div v-if='loggedStatus === false'>
-      <h3>Nothing to show. Please Login to view info</h3>
+      <h3 style="text-align: center">Nothing to show. Please Login to view info</h3>
     </div>
     <div v-if='loggedStatus === true'>
       <el-table
@@ -39,10 +38,13 @@
         <el-table-column 
           label='Action'
         >
+        <template slot-scope="scope">
+          {{scope.row.id}}
           <el-row>
             <el-col :span="8"><el-button type="success" icon="el-icon-edit"></el-button></el-col>
             <el-col :span="8"><el-button type="danger" icon="el-icon-delete"></el-button></el-col>
           </el-row>
+      </template>
         </el-table-column>
       </el-table>
     </div>
@@ -52,34 +54,25 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import authUser from "../store/modules/authUser"
-import createTask from "../store/modules/createTodo"
-import listTask from "../store/modules/listTodo"
-import { Form, Table } from 'element-ui'
+import todo from "../store/modules/Todo"
+import { Form, Table, Button } from 'element-ui'
+import { Todo } from "../store/models/todo";
 
 @Component({
   components: {
     Table,
-    Form
+    Form,
+    Button
   },
 })
 export default class Home extends Vue {
 
-  form = {
-    todo: ''
-  }
-
-  async onSubmit(){
-    try{
-      await createTask.createTodo(this.form.todo)
-      listTask.getTodo()
-    }
-    finally{
-      this.form.todo = ''  
-    }
-  }
+  form: Todo = {
+    note: ''
+  } as Todo
 
   async created(){
-    await listTask.getTodo()
+    await todo.getTodo()
   }
 
   get loggedStatus(){
@@ -87,7 +80,16 @@ export default class Home extends Vue {
   }
 
   get listOfTodo(){
-    return listTask.todoList.splice(0, 5)
+    return todo.ListofTodos
+  }
+
+  async onSubmit(){
+    try{
+      await todo.createTodo(this.form)
+    }
+    finally{
+      this.form.note = ''  
+    }
   }
 
 }
@@ -96,4 +98,19 @@ export default class Home extends Vue {
 
 <style scoped>
 @import url("//unpkg.com/element-ui@2.15.1/lib/theme-chalk/index.css");
+
+*{
+  font: bold;
+  font-weight: 700;
+  font-size: inherit;
+  color: black;
+}
+
+.main-input{
+  width: 50em;
+}
+
+.main-button{
+  width: 8em;
+}
 </style>
